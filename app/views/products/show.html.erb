@@ -1,0 +1,20 @@
+<h1 class="text-center m-4 h1">Product details with Id: <%= @product.id%></h1>
+
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Code</td>
+      <td>Name</td>
+      <td>Price</td>
+      <td>Defected</td>
+    </tr>
+  </thead>
+  <tr>
+    <td><%= @product.id %></td>
+    <td><%= @product.code %></td>
+    <td><%= @product.name %></td>
+    <td><%= @product.price %></td>
+    <td><%= @product.defected %></td>
+  </tr>
+</table>

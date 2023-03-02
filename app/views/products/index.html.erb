@@ -1,0 +1,21 @@
+<h1 class="text-center m-4 h1">Products</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Code</td>
+      <td>Name</td>
+      <td>Price</td>
+      <td>Defected</td>
+    </tr>
+  </thead>
+  <% @product.each do |product| %>
+    <tr>
+      <td><%= link_to product.id, product %></td>
+      <td><%= product.code %></td>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.defected %></td>
+    </tr>
+  <%end%>
+</table>
