@@ -116,7 +116,7 @@ It is done using .save method
 * ![Screenshot from 2023-03-02 16-06-57](https://user-images.githubusercontent.com/125340521/222446229-ca6c2406-63a3-47fb-93b8-13096f3e10c8.png)
  
 * ALl the values can also be updated from .update method using :all
-* ![Uploading Screenshot from 2023-03-02 16-07-20.png…]()
+* 
 
 ###### Deletion of record
 
