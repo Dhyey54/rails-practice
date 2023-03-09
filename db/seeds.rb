@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+10.times do |i|
+  count = Author.all.count
+  Book.create(name: "Book ##{rand(1000)}", price: rand(100..1000),author_id: rand(1..count))
+end

@@ -14,6 +14,8 @@ gem "sprockets-rails"
 
 gem "pg"
 
+gem 'validates_timeliness', '~> 7.0.0.beta1' 
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 

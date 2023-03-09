@@ -10,17 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_02_103130) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_131354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "book_id", null: false
+    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
+    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 6, scale: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.integer "code"
     t.string "name"
-    t.integer "price"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "defected", default: true
   end
 
+  add_foreign_key "books", "authors"
 end
