@@ -79,7 +79,8 @@ CREATE TABLE public.books (
     price numeric(6,1),
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    author_id bigint NOT NULL
+    author_id bigint NOT NULL,
+    admin character varying
 );
 
 
@@ -254,6 +255,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230307093727'),
 ('20230307094351'),
 ('20230307095453'),
-('20230307131354');
+('20230307131354'),
+('20230309103339');
 
 
