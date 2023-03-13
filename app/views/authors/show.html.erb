@@ -1,41 +1,41 @@
 <h1 class="text-center m-4 h1">Author: <%= @author.first_name + " " + @author.last_name %></h1>
 
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-<tr>
+  <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Date Of Birth</th>
     <th>Email</th>
-</tr>
-<tr>
+  </tr>
+  <tr>
     <td><%= @author.id %></td>
     <td><%= @author.first_name + " " + @author.last_name %></td>
     <td><%= @author.date_of_birth %></td>
     <td><%= @author.email %></td>
-</tr>
+  </tr>
 
 </table>
 
 <h3 class="text-center m-4"> <%= @author.first_name + " " + @author.last_name %> has <%= @books.count %> books.</h3>
 
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-<tr>
+  <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Price</th>
     <th>Author Id</th>
   </tr>
-<% @books.each do |book| %>
-  <tr>
-    <td><%= link_to book.id, book %></td>
-    <td><%= book.name %></td>
-    <td><%= book.price %></td>
-    <td><%= book.author_id %></td>
-  </tr>
-<% end %>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= link_to book.id, book %></td>
+      <td><%= book.name %></td>
+      <td><%= book.price %></td>
+      <td><%= book.author_id %></td>
+    </tr>
+  <% end %>
 </table>
 <div class="text-center p-2">
-  <button class="btn btn-info"><%= link_to 'Home', authors_path(@author), :class => "text-decoration-none text-dark" %></Button>
-  <button class="btn btn-warning"><%= link_to 'Edit', edit_author_path(@author), :class => "text-decoration-none text-dark" %></Button>
-  <button class="btn btn-danger"><%= link_to "Destroy", author_path(@author), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "text-decoration-none text-light" %></Button>
+  <button class="btn btn-info"><%= link_to 'Home', authors_path(@author), class: "text-decoration-none text-dark" %></Button>
+  <button class="btn btn-warning"><%= link_to 'Edit', edit_author_path(@author), class: "text-decoration-none text-dark" %></Button>
+  <button class="btn btn-danger"><%= link_to "Destroy", author_path(@author), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light" %></Button>
 </div>

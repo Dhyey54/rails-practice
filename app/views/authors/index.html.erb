@@ -1,19 +1,19 @@
 <h1 class="text-center m-4 h1">Authors</h1>
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-<tr>
+  <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Date Of Birth</th>
     <th>Email</th>
   </tr>
-<% @authors.each do |author| %>
-  <tr>
-    <td><%= link_to author.id, author %></td>
-    <td><%= author.first_name + " " + author.last_name %></td>
-    <td><%= author.date_of_birth %></td>
-    <td><%= author.email %></td>
-  </tr>
-<% end %>
+  <% @authors.each do |author| %>
+    <tr>
+      <td><%= link_to author.id, author %></td>
+      <td><%= author.first_name + " " + author.last_name %></td>
+      <td><%= author.date_of_birth %></td>
+      <td><%= author.email %></td>
+    </tr>
+  <% end %>
 </table>
 <div class="text-center p-2">
   <button class="btn btn-info"><%= link_to "New Author", new_author_path, :class => "text-decoration-none text-dark" %></Button>
