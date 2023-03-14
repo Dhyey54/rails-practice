@@ -11,6 +11,8 @@ module RailsPractice
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Create dump of database
+    config.active_record.schema_format = :ruby
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

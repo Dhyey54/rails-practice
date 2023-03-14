@@ -150,3 +150,121 @@ Callbacks are used to run some specific method when some event occurs
 
 ###### View of show.html file
 * ![Screenshot from 2023-03-02 19-08-50](https://user-images.githubusercontent.com/125340521/222447348-db3f8d00-22e1-40ff-8897-af004c629a40.png)
+
+##### Active Record Migration
+Migrations are a convenient way to alter your database schema over time in a consistent way. They use a Ruby DSL so that you don't have to write SQL by hand, allowing your schema and changes to be database independent.
+
+Migration is created using folling command:
+```
+rails generate migration migration_name
+```
+this will create migartion file of that name. Which will change method in it. Using which we can alter our table.
+
+If the migration name is of the form "AddColumnToTable" or "RemoveColumnFromTable" and is followed by a list of column names and types then a migration containing the appropriate add_column and remove_column statements will be created. Methods used are:
+```
+add_column :table_name, :column_name, :datatype
+remove_column :table_name, :column_name, :datatype
+```
+
+If the migration name is of the form "CreateXXX" then it will create the table with list of column provided.
+Example:
+```
+rails generate migration CreateProducts name:string part_number:string
+```
+It uses create_join_table method.
+Example:
+```
+create_join_table :products, :categories
+```
+To customize the name of the table, provide a :table_name option.
+
+Migration generates db/migrate/YYYYMMDDHHMMSS_migration_name file.
+
+Reference can be added using add_reference call. Example:
+```
+rails generate migration AddUserRefToProducts user:references
+```
+
+Two tables can be joined using JoinTable. Example:
+```
+rails generate migration CreateJoinTableCustomerProduct customer product
+```
+
+There is also change_table which is similar to create_table but it's yield block provide more method like:
+Example:
+```
+change_table :products do |t|
+  t.remove :description, :name
+  t.string :part_number
+  t.index :part_number
+  t.rename :upccode, :upc_code
+end
+```
+
+#### Column modifiers
+
+Modifiers available are:
+* comment
+* collation
+* default
+* limit
+* null
+* precision
+* scale
+
+#### Foreign Keys
+
+Foreign keys can be added using add_foreign_key method.
+Example
+```
+add_foreign_key :articles, :authors
+```
+If you want specific column as reference, it can be done using column: option.
+
+#### Reversible
+
+Complex migrations may require processing that Active Record doesn't know how to reverse. You can use reversible to specify what to do when running a migration and what else to do when reverting it.
+
+#### Up/Down Method
+
+You can also use up and down methods instead of the change method. The up method should describe the transformation you'd like to make to your schema, and the down method of your migration should revert the transformations done by the up method.
+
+#### Reverting Previous Migration
+
+You can use Active Record's ability to rollback migrations using the revert method
+
+#### Running migartions
+
+You can run migration for all the file using
+```
+rails db:migrate
+```
+
+You can up some specific version using
+```
+rails db:migrate:up VERSION=version_d
+```
+
+#### Rollback
+
+You can rollback latest migration using following command:
+```
+rails db:rollback
+```
+
+If you want to rollback specific migration. It can be done using:
+```
+rails db:migrate:down VERSION=version_id
+```
+
+#### Database Setup
+
+The ```rails db:setup``` command will create the database, load the schema, and initialize it with the seed data.
+
+#### Databse Reset
+
+The ```rails db:reset``` command will drop the database and set it up again. This is functionally equivalent to bin/rails db:drop db:setup.
+
+#### Seeds
+
+To add initial data after a database is created, Rails has a built-in 'seeds' feature that speeds up the process. Seed data is written in db/seeds.rb  file.

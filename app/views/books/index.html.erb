@@ -1,0 +1,20 @@
+<h1 class="text-center m-4 h1">Books</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Author Id</th>
+  </tr>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= link_to book.id, book %></td>
+      <td><%= book.name %></td>
+      <td><%= book.price %></td>
+      <td><%= link_to book.author_id, book.author %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="text-center p-2">
+  <button class="btn btn-info"><%= link_to "New Book", new_book_path, class: "text-decoration-none text-dark" %></Button>
+</div>
