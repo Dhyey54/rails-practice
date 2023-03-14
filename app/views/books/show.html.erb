@@ -1,23 +1,22 @@
 <h1 class="text-center m-4 h1"><%= @book.name %></h1>
 
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-<tr>
+  <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Price</th>
     <th>Author Id</th>
-</tr>
-<tr>
+  </tr>
+  <tr>
     <td><%= @book.id %></td>
     <td><%= @book.name %></td>
     <td><%= @book.price %></td>
     <td><%= @book.author_id %></td>
-</tr>
-
+  </tr>
 </table>
 
 <div class="text-center p-2">
-  <button class="btn btn-info"><%= link_to 'Home', books_path, :class => "text-decoration-none text-light" %></Button>
-  <button class="btn btn-warning"><%= link_to 'Edit', edit_book_path(@book), :class => "text-decoration-none text-dark" %></Button>
-  <button class="btn btn-danger"><%= link_to "Destroy", book_path(@book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "text-decoration-none text-light" %></Button>
+  <button class="btn btn-info"><%= link_to 'Home', books_path, class: "text-decoration-none text-light" %></Button>
+  <button class="btn btn-warning"><%= link_to 'Edit', edit_book_path(@book), class: "text-decoration-none text-dark" %></Button>
+  <button class="btn btn-danger"><%= link_to "Destroy", book_path(@book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light" %></Button>
 </div>
