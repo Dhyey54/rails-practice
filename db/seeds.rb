@@ -8,5 +8,5 @@
 
 10.times do |i|
   count = Author.all.count
-  Book.find_or_create_by(name: "Book ##{rand(1000)}", price: rand(100..1000),author_id: rand(1..count))
+  Book.find_or_create_by(name: "Book ##{rand(1000)}", price: rand(100..1000), author_id: rand(1..count))
 end
