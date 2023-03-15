@@ -1,0 +1,5 @@
+<ul class="text-danger">
+  <% @faculty.errors.messages_for(field).each do |message| %>
+    <li><%= "#{field.to_s.humanize}: #{message}" %></li>
+  <% end %>
+</ul>
