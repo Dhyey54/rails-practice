@@ -9,7 +9,7 @@
   <% @students.each do |student| %>
     <tr>
       <td><%= link_to student.id, student %></td>
-      <td><%= student.first_name + " " + student.last_name %></td>
+      <td><%= "#{student.first_name} #{student.last_name}" %></td>
       <td><%= student.birthdate %></td>
       <td><%= student.department %></td>
     </tr>
