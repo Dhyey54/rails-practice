@@ -1,0 +1,21 @@
+<h1 class="text-center m-4 h1">Students</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Date Of Birth</th>
+    <th>Department</th>
+  </tr>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= link_to student.id, student %></td>
+      <td><%= student.first_name + " " + student.last_name %></td>
+      <td><%= student.birthdate %></td>
+      <td><%= student.department %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="text-center p-2">
+  <button class="btn btn-info"><%= link_to "New Student", new_student_path, class: "text-decoration-none text-dark" %></Button>
+</div>

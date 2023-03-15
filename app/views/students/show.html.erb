@@ -1,0 +1,21 @@
+<h1 class="text-center m-4 h1">Faculties</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Date Of Birth</th>
+    <th>Department</th>
+  </tr>
+  <tr>
+    <td><%= @student.id %></td>
+    <td><%= "#{student.first_name} #{student.last_name}" %></td>
+    <td><%= @student.birthdate %></td>
+    <td><%= @student.department %></td>
+  </tr>
+</table>
+
+<div class="text-center p-2">
+  <button class="btn btn-info"><%= link_to 'Home', students_path, class: "text-decoration-none text-dark" %></Button>
+  <button class="btn btn-warning"><%= link_to 'Edit', edit_student_path(@student), class: "text-decoration-none text-dark" %></Button>
+  <button class="btn btn-danger"><%= link_to "Destroy", student_path(@student), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light" %></Button>
+</div>

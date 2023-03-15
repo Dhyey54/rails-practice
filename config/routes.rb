@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :products
   resources :books
   resources :authors
-  # Defualt page shown on localhost:3000 is defined by root
-  root "books#index"
-
+  resources :faculties
+  resources :students
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  root "faculties#index"
 end
