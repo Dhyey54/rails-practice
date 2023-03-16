@@ -6,6 +6,7 @@
     <th>Phone Number</th>
     <th>Email</th>
     <th>Date Of Birth</th>
+    <th>Age</th>
     <th>Designation</th>
   </tr>
   <% @faculties.each do |faculty| %>
@@ -15,6 +16,7 @@
       <td><%= faculty.phone_number %></td>
       <td><%= faculty.email %></td>
       <td><%= faculty.birthdate %></td>
+      <td><%= faculty.age %></td>
       <td><%= faculty.designation %></td>
     </tr>
   <% end %>
