@@ -268,3 +268,145 @@ The ```rails db:reset``` command will drop the database and set it up again. Thi
 #### Seeds
 
 To add initial data after a database is created, Rails has a built-in 'seeds' feature that speeds up the process. Seed data is written in db/seeds.rb  file.
+
+### Validation
+
+Validations are used to ensure that only valid data is saved into your database.Model-level validations are the best way to ensure that only valid data is saved into your database. They are database agnostic, cannot be bypassed by end users, and are convenient to test and maintain. Rails makes them easy to use, provides built-in helpers for common needs, and allows you to create your own validation methods as well.
+
+The following methods trigger validations, and will save the object to the database only if the object is valid:
+
+* create
+* create!
+* save
+* save!
+* update
+* update!
+
+###### valid? and invalid?
+To verify whether or not an object is valid, Rails uses the valid? method. 
+invalid? is simply the inverse of valid?. It triggers your validations, returning true if any errors were found in the object, and false otherwise.
+
+#### Validation Helpers
+
+* acceptance:
+  
+  This method validates that a checkbox on the user interface was checked when a form was submitted. This is typically used when the user needs to agree to your application's terms of service, confirm reading some text, or any similar concept.
+  ```
+  validates :terms_of_service, acceptance: true
+  ```
+* validates_associated:
+  
+  You should use this helper when your model has associations with other models and they also need to be validated.
+  ```
+  validates_associated :books
+  ```
+* confirmation:
+
+  You should use this helper when you have two text fields that should receive exactly the same content.
+  ```
+  :email, confirmation: true
+  ```
+* exclusion:
+
+  This helper validates that the attributes' values are not included in a given set. This set can be any enumerable object.
+  ```
+  validates :subdomain, exclusion: { in: %w(www us ca jp), message: "%{value} is reserved." }
+  ```
+* format:
+
+  This helper validates the attributes' values by testing whether they match a given regular expression, which is specified using the :with option.
+  ```
+   validates :legacy_code, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  ```
+* inclusion:
+
+  This helper validates that the attributes' values are included in a given set. This set can be any enumerable object.
+  ```
+  validates :size, inclusion: { in: %w(small medium large), message: "%{value} is not a valid size" }
+  ```
+* length:
+  This helper validates the length of the attributes' values. It provides a variety of options:
+
+  * :minimum - The attribute cannot have less than the specified length.
+  * :maximum - The attribute cannot have more than the specified length.
+  * :in (or :within) - The attribute length must be included in a given interval. The value for this option must be a range.
+  * :is - The attribute length must be equal to the given value.
+* numericality:
+
+  This helper validates that your attributes have only numeric values. By default, it will match an optional sign followed by an integral or floating point number. To specify that only integral numbers are allowed set :only_integer to true.
+
+  Besides :only_integer, this helper also accepts the following options to add constraints to acceptable values:
+  * :greater_than
+  * :greater_than_or_equal_to
+  * :equal_to
+  * :less_than
+  * :less_than_or_equal_to
+  * :odd
+  * :even
+
+* presence:
+  This helper validates that the specified attributes are not empty. It uses the blank? method to check if the value is either nil or a blank string.
+  ```
+  validates :name, :login, :email, presence: true
+  ```
+* absence:
+  This helper validates that the specified attributes are absent. It uses the present? method to check if the value is not either nil or a blank string.
+  ```
+  validates :name, :login, :email, absence: true
+  ```
+* uniqueness:
+  This helper validates that the attribute's value is unique right before the object gets saved.
+  ```
+  validates :email, uniqueness: true
+  ```
+* validates_with:
+  This helper passes the record to a separate class for validation
+  ```
+  class GoodnessValidator < ActiveModel::Validator
+    def validate(record)
+      if record.first_name == "Evil"
+        record.errors[:base] << "This person is evil"
+      end
+    end
+  end
+  ```
+* validates_each:
+  This helper validates attributes against a block. It doesn't have a predefined validation function. You should create one using a block, and every attribute passed to validates_each will be tested against it.
+  ```
+  class Person < ActiveRecord::Base
+    validates_each :name, :surname do |record, attr, value|
+      record.errors.add(attr, 'must start with upper case') if value =~ /\A[a-z]/
+    end
+  end
+  ```
+#### Common Validation Options
+
+* :allow_nil : The :allow_nil option skips the validation when the value being validated is nil.
+* :allow_blank : The :allow_blank option is similar to the :allow_nil option. This option will let validation pass if the attribute's value is blank?, like nil or an empty string
+* :message : The :message option lets you specify the message that will be added to the errors collection when validation fails.
+* :on : The :on option lets you specify when the validation should happen. The default behavior for all the built-in validation helpers is to be run on save (both when you're creating a new record and when you're updating it). If you want to change it, you can use on: :create to run the validation only when a new record is created or on: :update to run the validation only when a record is updated.
+
+#### Conditional Validation
+
+* :if : You may use the :if option when you want to specify when the validation should happen. 
+* :unless : If you want to specify when the validation should not happen, then you may use the :unless option.
+* Grouping Conditional validations : Sometimes it is useful to have multiple validations use one condition, it can be easily achieved using with_options.
+* Combining Validation Conditions : when multiple conditions define whether or not a validation should happen, an Array can be used.
+  ```
+  validates :mouse, presence: true, if: ["market.retail?", :desktop?], unless: Proc.new { |c| c.trackpad.present? }
+  ```
+
+#### Performing Custom Validations
+
+* Custom Validators : Custom validators are classes that extend ActiveModel::Validator. These classes must implement a validate method which takes a record as an argument and performs the validation on it. The custom validator is called using the validates_with method.
+
+* Custom Methods : You can also create methods that verify the state of your models and add messages to the errors collection when they are invalid. You must then register these methods by using the validate class method, passing in the symbols for the validation methods' names.
+
+### Working with Validation Errors
+
+* errors : Returns an instance of the class ActiveModel::Errors containing all errors. Each key is the attribute name and the value is an array of strings with all   errors.
+* errors[] : errors[] is used when you want to check the error messages for a specific attribute. It returns an array of strings with all error messages for the given attribute, each string with one error message. If there are no errors related to the attribute, it returns an empty array.
+* errors.add : The add method lets you manually add messages that are related to particular attributes. You can use the errors.full_messages or errors.to_a methods to view the messages in the form they might be displayed to a user.
+* errors[:base] : You can add error messages that are related to the object's state as a whole, instead of being related to a specific attribute. You can use this method when you want to say that the object is invalid, no matter the values of its attributes. Since errors[:base] is an array, you can simply add a string to it and it will be used as an error message.
+* errors.clear : The clear method is used when you intentionally want to clear all the messages in the errors collection.
+* errors.size : The size method returns the total number of error messages for the object.

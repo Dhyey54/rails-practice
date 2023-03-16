@@ -1,0 +1,62 @@
+<div class="container w-50">
+  <%= form_with model: faculty do |form| %>
+    <%= render "error" %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :first_name %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :last_name %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :last_name %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :phone_number %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :phone_number %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :email %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :email %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :birthdate %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.date_field :birthdate %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :designation %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :designation %><br>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

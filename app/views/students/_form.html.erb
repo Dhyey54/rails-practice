@@ -1,0 +1,53 @@
+<div class="container w-50">
+  <%= form_with model: student do |form| %>
+    <%= render "error" %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :first_name %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :last_name %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :last_name %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :birthdate %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.date_field :birthdate %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :department %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :department %><br>
+      </div>
+    </div>
+
+    <div class="form-check">
+      <div>
+        <%= form.check_box :terms_of_usage, class: "form-check-input" %>
+      </div>
+      <div>
+        <%= form.label :terms_of_uasge, class: "form-check-label" %>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
