@@ -15,7 +15,6 @@ class FacultiesController < ApplicationController
     @faculty = Faculty.find(params[:id])
   end
 
-
   def create
     @faculty = Faculty.new(article_params)
 

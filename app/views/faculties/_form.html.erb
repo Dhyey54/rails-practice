@@ -1,5 +1,6 @@
 <div class="container w-50">
   <%= form_with model: faculty do |form| %>
+    <%= render "error" %>
     <div class="row py-3">
       <div class="col-6 col-sm-3">
         <%= form.label :first_name %>
@@ -7,7 +8,6 @@
       <div class="col-6 col-sm-3">
         <%= form.text_field :first_name %>
       </div>
-      <%= render "error" ,field: :first_name%>
     </div>
 
     <div class="row pb-3">
@@ -17,7 +17,6 @@
       <div class="col-6 col-sm-3">
         <%= form.text_field :last_name %><br>
       </div>
-      <%= render "error" ,field: :last_name%>
     </div>
 
     <div class="row pb-3">
@@ -27,7 +26,6 @@
       <div class="col-6 col-sm-3">
         <%= form.text_field :phone_number %><br>
       </div>
-      <%= render "error" ,field: :phone_number%>
     </div>
 
     <div class="row pb-3">
@@ -37,7 +35,6 @@
       <div class="col-6 col-sm-3">
         <%= form.text_field :email %><br>
       </div>
-      <%= render "error" ,field: :email%>
     </div>
 
     <div class="row pb-3">
@@ -47,7 +44,6 @@
       <div class="col-6 col-sm-3">
         <%= form.date_field :birthdate %><br>
       </div>
-      <%= render "error" ,field: :birthdate%>
     </div>
 
     <div class="row pb-3">
@@ -57,7 +53,6 @@
       <div class="col-6 col-sm-3">
         <%= form.text_field :designation %><br>
       </div>
-      <%= render "error" ,field: :designation%>
     </div>
 
     <div class="w-25 m-auto">
