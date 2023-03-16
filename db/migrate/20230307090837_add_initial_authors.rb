@@ -1,5 +1,6 @@
 class AddInitialAuthors < ActiveRecord::Migration[7.0]
   def up
+    Author.reset_column_information
     author_firstname = ["Dhyey", "Krutik", "Aditya","William","J.K."]
     author_lastname = ["Sapara", "Patel", "Kansara","Shakesphere","Rowling"]
     author_dob = ["15-12-2001","6-4-1992","22-09-1980","23-04-1994","23-06-1965"]
