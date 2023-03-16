@@ -39,7 +39,7 @@ class FacultiesController < ApplicationController
     @faculty = Faculty.find(params[:id])
     @faculty.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to faculties_path, status: :see_other
   end
 
   private

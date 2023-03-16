@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @student.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to students_path, status: :see_other
   end
 
   private
