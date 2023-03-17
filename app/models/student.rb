@@ -57,8 +57,6 @@ class Student < ApplicationRecord
     puts "Student #{first_name} #{last_name} is removed from system."
   end
 
-
-
   def default_birthdate_callback
     self.birthdate = "01-01-1990" if birthdate.blank?
   end
@@ -66,5 +64,4 @@ class Student < ApplicationRecord
   def is_deleted?
     !Student.exists?(id)
   end
-
 end

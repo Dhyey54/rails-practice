@@ -65,5 +65,4 @@ class Faculty < ApplicationRecord
   def age_callback
     self.age = Date.today.year - self.birthdate.year
   end
-
 end
