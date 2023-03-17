@@ -17,7 +17,7 @@
 </table>
 
 <div class="text-center p-2">
-  <button class="btn btn-info"><%= link_to 'Home', students_path, class: "text-decoration-none text-dark" %></Button>
-  <button class="btn btn-warning"><%= link_to 'Edit', edit_student_path(@student), class: "text-decoration-none text-dark" %></Button>
-  <button class="btn btn-danger"><%= link_to "Destroy", student_path(@student), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light" %></Button>
+  <%= link_to 'Home', students_path, class: "text-decoration-none text-dark btn btn-info" %>
+  <%= link_to 'Edit', edit_student_path(@student), class: "text-decoration-none text-dark btn btn-warning" %>
+  <%= link_to "Destroy", student_path(@student), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %>
 </div>

@@ -46,6 +46,7 @@ module CallbackMethod
 
   def callback_after_save
     puts "Callback after save"
+    raise ActiveRecord::Rollback if self.first_name == "error"
   end
 
   def callback_before_update
@@ -78,5 +79,9 @@ module CallbackMethod
 
   def callback_after_commit
     puts "Callback after commit"
+  end
+
+  def touch_callback
+    puts "Touch callback"
   end
 end

@@ -4,8 +4,9 @@ class Student < ApplicationRecord
   include EmailCallback
 
   validates :first_name, :last_name, presence: { message: "%{attribute} must be given please" }
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :department, presence: true, department: true
+  validates :email, presence: true, format: { with: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: "Enter proper email address"}, uniqueness: true
   validates :terms_of_usage, acceptance: { message: 'Terms of usage must be accepted to continue' }
   validates_with DateValidator
 
@@ -28,17 +29,18 @@ class Student < ApplicationRecord
   # Update Callback
   before_update :callback_before_update, :update_counter
   around_update :callback_around_update
-  after_update :callback_after_update, if: :is_deleted?
+  after_update :callback_after_update
   # Destroy Callback
   around_destroy :callback_around_destroy
   before_destroy :callback_before_destroy
   after_destroy :callback_after_destroy
   # Commit Callback
-  after_commit :callback_after_commit, on: [ :create, :update, :destroy]
+  after_commit :callback_after_commit, on: [ :create, :update, :destroy],if: :is_deleted?
   # Different Commit Callback
   after_create_commit :callback_after_create_commit
   after_update_commit :callback_update_create_commit
   after_destroy_commit :callback_destroy_create_commit
+  after_touch :touch_callback
 
   def callback_after_create_commit
     counter = Student.count
