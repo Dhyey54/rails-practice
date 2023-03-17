@@ -19,9 +19,9 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(article_params)
     @student.department.upcase!
-    flash.alert = "Email Validated"
     
     if @student.save
+      flash.alert = "Email Validated"
       redirect_to @student
     else
       render :new, status: :unprocessable_entity
@@ -31,9 +31,9 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
     article_params[:department].upcase!
-    flash.alert = "Email Validated"
-
+    
     if @student.update(article_params)
+      flash.alert = "Email Validated"
       redirect_to @student
     else
       render :edit, status: :unprocessable_entity
