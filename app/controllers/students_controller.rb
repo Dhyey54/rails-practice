@@ -15,11 +15,10 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
-
   def create
-    @student = Student.new(article_params)
+    @student = Student.new(student_params)
     @student.department.upcase!
-    
+
     if @student.save
       flash.alert = "Email Validated"
       redirect_to @student
@@ -30,9 +29,9 @@ class StudentsController < ApplicationController
 
   def update
     @student = Student.find(params[:id])
-    article_params[:department].upcase!
-    
-    if @student.update(article_params)
+    student_params[:department].upcase!
+
+    if @student.update(student_params)
       flash.alert = "Email Validated"
       redirect_to @student
     else
@@ -48,7 +47,7 @@ class StudentsController < ApplicationController
   end
 
   private
-  def article_params
+  def student_params
     params.require(:student).permit(:first_name, :last_name, :email, :birthdate, :department, :terms_of_usage, :student_count)
   end
 end
