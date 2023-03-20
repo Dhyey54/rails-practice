@@ -3,6 +3,7 @@
   <tr>
     <th>Id</th>
     <th>Name</th>
+    <th>Email</th>
     <th>Date Of Birth</th>
     <th>Department</th>
   </tr>
@@ -10,6 +11,7 @@
     <tr>
       <td><%= link_to student.id, student %></td>
       <td><%= "#{student.first_name} #{student.last_name}" %></td>
+      <td><%= student.email %></td>
       <td><%= student.birthdate %></td>
       <td><%= student.department %></td>
     </tr>
@@ -17,5 +19,5 @@
 </table>
 
 <div class="text-center p-2">
-  <button class="btn btn-info"><%= link_to "New Student", new_student_path, class: "text-decoration-none text-dark" %></Button>
+  <%= link_to "New Student", new_student_path, class: "text-decoration-none text-dark btn btn-info" %>
 </div>

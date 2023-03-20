@@ -16,7 +16,7 @@ class FacultiesController < ApplicationController
   end
 
   def create
-    @faculty = Faculty.new(article_params)
+    @faculty = Faculty.new(faculty_params)
 
     if @faculty.save
       redirect_to @faculty
@@ -28,7 +28,7 @@ class FacultiesController < ApplicationController
   def update
     @faculty = Faculty.find(params[:id])
 
-    if @faculty.update(article_params)
+    if @faculty.update(faculty_params)
       redirect_to @faculty
     else
       render :edit, status: :unprocessable_entity
@@ -43,7 +43,7 @@ class FacultiesController < ApplicationController
   end
 
   private
-  def article_params
+  def faculty_params
     params.require(:faculty).permit(:first_name, :last_name, :birthdate, :email, :phone_number, :designation)
   end
 end
