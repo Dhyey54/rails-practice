@@ -428,4 +428,5 @@ end
 ```
 
 Output when trying to access it:
-![Strong params](Screenshot from 2023-03-24 16-08-35.png)
+
+![Screenshot from 2023-03-24 16-08-35](https://user-images.githubusercontent.com/125340521/227502802-124dbc01-0679-404e-bf84-4bdcd72b6a2a.png)
