@@ -1,0 +1,22 @@
+<h1 class="text-center m-4 h1">Car</h1>
+<%= render "shared/logout" %>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Constructor</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td><%= @car.id %></td>
+    <td><%= @car.name %></td>
+    <td><%= @car.constructor %></td>
+    <td><%= @car.price %></td>
+  </tr>
+</table>
+
+<div class="text-center p-2">
+  <%= link_to 'Home', cars_path, class: "text-decoration-none text-dark btn btn-info" %>
+  <%= link_to 'Edit', edit_car_path(@car), class: "text-decoration-none text-dark btn btn-warning" %>
+  <%= link_to "Destroy", car_path(@car), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %>
+</div>

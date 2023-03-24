@@ -33,6 +33,9 @@ gem "jbuilder"
 
 gem "byebug"
 
+gem "prawn"
+gem "prawn-table"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
