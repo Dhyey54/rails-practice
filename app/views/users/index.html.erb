@@ -2,21 +2,18 @@
 
   <% if @current_user != nil %>
     <% # Code for Successful Logged in user%>
+    <%= render "shared/navbar" %>
     <%= render "shared/logout" %>
-    <h1 class="my-4">Cars</h1>
+    <h1 class="my-4">Users</h1>
     <table class="table w-50 table-bordered table-striped table-hover mx-auto text-center">
       <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Constructor</th>
-        <th>Price</th>
+        <th>Username</th>
       </tr>
-      <% @cars.each do |car| %>
+      <% @users.each do |user| %>
         <tr>
-          <td><%= car.id %></td>
-          <td><%= car.name %></td>
-          <td><%= car.constructor %></td>
-          <td><%= car.price %></td>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
         </tr>
       <% end %>
     </table>

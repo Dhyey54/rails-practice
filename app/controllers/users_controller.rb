@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   def index
     current_user
-    @cars = Car.all.order(id: :asc)
+    @users = User.all.order(id: :asc)
   end
 
   def create
@@ -12,10 +12,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user[:id]
       cookies[:user_name] = @user[:username]
       flash[:notice] = 'You have successfully logged in.'
+      redirect_to cars_path
     else
       flash[:notice] = 'Invalid username & password.'
+      redirect_to users_path
     end
-    redirect_to users_path
   end
 
   def destroy
