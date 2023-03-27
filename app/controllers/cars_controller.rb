@@ -4,13 +4,13 @@ class CarsController < ApplicationController
   before_action :authenticate
   before_action :require_login
   before_action :admin_login, only: [:new, :edit, :destroy]
+  before_action :find_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @cars = Car.all.order(id: :asc)
   end
 
   def show
-    @car = Car.find(params[:id])
   end
 
   def new
@@ -18,7 +18,6 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = Car.find(params[:id])
   end
 
   def create
@@ -32,8 +31,6 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.find(params[:id])
-
     if @car.update(car_params)
       redirect_to @car
     else
@@ -42,7 +39,6 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = Car.find(params[:id])
     @car.destroy
 
     redirect_to cars_path, status: :see_other
@@ -89,6 +85,10 @@ class CarsController < ApplicationController
     authenticate_or_request_with_http_digest do |username|
       USERS[username]
     end
+  end
+
+  def find_car
+    @car = Car.find(params[:id])
   end
 
   def generate_pdf(user)

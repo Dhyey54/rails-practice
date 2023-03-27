@@ -7,10 +7,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.where(username: params[:username], password: params[:password]).first
-    if @user
-      session[:user_id] = @user[:id]
-      cookies[:user_name] = @user[:username]
+    user = User.where(username: params[:username], password: params[:password]).first
+    if user
+      session[:user_id] = user[:id]
+      cookies[:user_name] = user[:username]
       flash[:notice] = 'You have successfully logged in.'
       redirect_to cars_path
     else

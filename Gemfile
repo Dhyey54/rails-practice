@@ -33,6 +33,7 @@ gem "jbuilder"
 
 gem "byebug"
 
+# Use prawn for pdf generation
 gem "prawn"
 gem "prawn-table"
 
