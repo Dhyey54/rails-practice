@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   http_basic_authenticate_with name: "admin", password: "123"
-  
+  skip_before_action :require_login
+
   def index
     current_user
     @users = User.all.order(id: :asc)

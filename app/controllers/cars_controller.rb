@@ -2,7 +2,6 @@ class CarsController < ApplicationController
   USERS = { 'dhyey' => 'pass', 'krutik' => 'abc'}
 
   before_action :authenticate
-  before_action :require_login
   before_action :admin_login, only: [:new, :edit, :destroy]
   before_action :find_car, only: [:show, :edit, :update, :destroy]
 
@@ -58,27 +57,13 @@ class CarsController < ApplicationController
     params.require(:car).permit(:name, :constructor, :price)
   end
 
-  def require_login
-    current_user
-    if is_logged?
-      puts "require"
-      flash[:error] = "You must be logged in to get access"
-      redirect_to users_path
-    end
-  end
-
   def admin_login
     unless is_logged?
-      puts "admin"
       if @current_user[:username] != "admin"
         flash[:error] = "Only admins can modify the data"
         redirect_to cars_path
       end
     end
-  end
-
-  def is_logged?
-    current_user == nil
   end
 
   def authenticate
