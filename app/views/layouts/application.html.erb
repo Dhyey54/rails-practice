@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <% unless controller.controller_name == "users" %>
+    <% unless @current_user == nil %>
       <%= render "shared/navbar" %>
       <%= render "shared/logout" %>
     <% end %>
