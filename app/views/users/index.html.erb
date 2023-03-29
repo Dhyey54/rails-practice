@@ -1,0 +1,44 @@
+<div class="mx-auto text-center">
+
+  <% if @current_user != nil %>
+    <%# Code for Successful Logged in user %>
+    <h1 class="my-4">Users</h1>
+    <table class="table w-50 table-bordered table-striped table-hover mx-auto text-center">
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% else %>
+    <%# Code For Login Page %>
+    <div class="row 2 w-50 mx-auto my-3"> 
+      <%= form_tag (users_path) do %> 
+        <h1>Login Page</h1>
+
+        <div class="input-group mb-3"> 
+          <label class="input-group-text" >Username</label> 
+          <br /> 
+          <%= text_field_tag :username, nil, class: 'form-control' %> 
+        </div>
+
+        <div class="input-group mb-3"> 
+          <label class='input-group-text' >Password</label> 
+          <br /> 
+          <%= password_field_tag :password, nil, class: 'form-control' %> 
+        </div>
+
+        <div class="input-group mb-3"> 
+          <%= submit_tag :login, class: 'btn-success rounded p-1 px-2' %> 
+        </div>
+      <% end %> 
+    </div>
+  <% end %>
+
+</div>

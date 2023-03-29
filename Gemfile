@@ -33,6 +33,10 @@ gem "jbuilder"
 
 gem "byebug"
 
+# Use prawn for pdf generation
+gem "prawn"
+gem "prawn-table"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

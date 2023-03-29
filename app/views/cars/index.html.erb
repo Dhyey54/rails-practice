@@ -1,0 +1,26 @@
+<h1 class="text-center my-4">Cars</h1>
+<%= render "search" %>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Constructor</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+  <% @cars.each do |car| %>
+    <tr>
+      <td><%= link_to car.id, car %></td>
+      <td><%= car.name %></td>
+      <td><%= car.constructor %></td>
+      <td><%= car.price %></td>
+      <td><%= link_to 'Edit', edit_car_path(car), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+      <%= link_to "Destroy", car_path(car), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="text-center p-2">
+  <%= link_to "New Car", new_car_path, class: "text-decoration-none text-dark btn btn-info" %>
+  <%= link_to 'Download PDF', "download_pdf" , class: "text-decoration-none text-dark btn btn-info" %>
+</div>

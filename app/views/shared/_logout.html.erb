@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-end position-absolute top-0 end-0 m-2">
+  <h4 class="my-auto me-3 text-white">Hello, <%= cookies[:user_name].titleize %></h4>
+  <%= link_to "Log Out", user_path(@current_user[:id]), data: { turbo_method: :delete }, class: "text-decoration-none text-light btn btn-danger my-auto me-3"%>
+</div>

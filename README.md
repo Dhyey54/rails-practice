@@ -410,3 +410,23 @@ invalid? is simply the inverse of valid?. It triggers your validations, returnin
 * errors[:base] : You can add error messages that are related to the object's state as a whole, instead of being related to a specific attribute. You can use this method when you want to say that the object is invalid, no matter the values of its attributes. Since errors[:base] is an array, you can simply add a string to it and it will be used as an error message.
 * errors.clear : The clear method is used when you intentionally want to clear all the messages in the errors collection.
 * errors.size : The size method returns the total number of error messages for the object.
+
+### Strong Parameters
+
+With strong parameters, Action Controller parameters are forbidden to be used in Active Model mass assignments until they have been permitted.
+It is achieved using:
+```
+params.permit(:id)
+```
+This will only permit id.
+
+Code used by me in my code for string parameter:
+```
+def car_params
+    params.require(:car).permit(:name, :constructor, :price)
+end
+```
+
+Output when trying to access it:
+
+![Screenshot from 2023-03-24 16-08-35](https://user-images.githubusercontent.com/125340521/227502802-124dbc01-0679-404e-bf84-4bdcd72b6a2a.png)
