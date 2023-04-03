@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   before_action :categories,only: %i[index new edit search]
   before_action :events, only: %i[index search]
 
-  def index
-  end
+  def index; end
 
   def show
     @category = Category.find_by(id: @event[:category_id])

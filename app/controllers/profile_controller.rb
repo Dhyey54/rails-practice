@@ -8,8 +8,7 @@ class ProfileController < ApplicationController
     @profile_events = Event.order(id: :desc).find(@enrolled_event)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @profile.update(profile_params)

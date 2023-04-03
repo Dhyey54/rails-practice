@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
-  # USERS = { 'dhyey' => 'pass', 'krutik' => 'abc'}
+  USERS = { 'dhyey' => 'pass', 'krutik' => 'abc'}
 
-  # before_action :authenticate
+  before_action :authenticate
   before_action :admin_login, only: [:new, :edit, :destroy]
   before_action :find_car, only: [:show, :edit, :update, :destroy]
 
