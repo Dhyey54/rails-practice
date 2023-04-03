@@ -1,0 +1,62 @@
+<h1 class="text-center m-4 h1">Profile</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone Number</th>
+  </tr>
+  <tr>
+    <td><%= @profile.firstname %></td>
+    <td><%= @profile.lastname %></td>
+    <td><%= @profile.phone %></td>
+  </tr>
+</table>
+<div class="text-center p-2">
+  <%= link_to 'Edit Profile', edit_profile_path(@profile), class: "text-decoration-none text-dark btn btn-warning my-3" %>
+</div>
+
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Address</th>
+    <td><%= @address.address %>,
+        <%= @address.pincode %><br>
+        <%= @address.city %>,<br>
+        <%= @address.state %></td>
+  </tr>
+</table>
+<div class="text-center p-2">
+  <%= link_to 'Edit Address', edit_address_path(@address), class: "text-decoration-none text-dark btn btn-warning my-3" %>
+</div>
+<br><br><hr>
+<h1 class="text-center my-4">Enrolled Events</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Action</th>
+  </tr>
+  <% @profile_events.each do |event| %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.event_date %></td>
+      <td><%= link_to "Remove", profile_path(event.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger me-2" %>
+      <%= link_to 'Comments', event_comments_path(event.id), class: "text-decoration-none text-dark btn btn-info me-2" %></td>
+    </tr>
+  <% end %>
+</table>
+<br><br><hr>
+<h1 class="text-center my-4">User comments</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Event Name</th>
+    <th>Comments</th>
+  </tr>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.event.name %></td>
+      <td><%= comment.user_comment %></td>
+    </tr>
+  <% end %>
+</table>

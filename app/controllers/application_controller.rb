@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
       @current_user = User.where(id: session[:user_id]).first
     end
 
+    def enrolled_event
+      @enrolled_event = Enrollment.where(user_id: @current_user[:id], created: false).pluck(:event_id)
+    end
+
     def require_login
       current_user
       if is_logged?
