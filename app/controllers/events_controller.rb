@@ -52,7 +52,7 @@ class EventsController < ApplicationController
   end
 
   def user_event
-    @event = Event.find_by(id: Enrollment.where(user_id: @current_user[:id], event_id: params[:id]).pluck(:event_id))
+    @event = Event.find_by(id: Enrollment.where(user_id: @current_user[:id], event_id: params[:id], created: true).pluck(:event_id))
   end
 
   def categories
