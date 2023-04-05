@@ -10,3 +10,7 @@
   count = Author.all.count
   Book.find_or_create_by(name: "Book ##{rand(1000)}", price: rand(100..1000), author_id: rand(1..count))
 end
+
+["Music", "Visual Arts", "Film", "Fashion"].each do |cat|
+  Category.find_or_create_by(category_name: cat)
+end

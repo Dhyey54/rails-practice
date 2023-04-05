@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   def index; end
 
   def show
-    @category = Category.find_by(id: @event[:category_id])
-    @comments = Comment.where(event_id: params[:id], user_id: @current_user[:id])
+    @category = @event.category
+    @comments = Event.find(params[:id]).comments
   end
 
   def new
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      Enrollment.create(event_id: @event.id, user_id: @current_user[:id], created: true)
+      @current_user.enrollments.create(event_id: @event.id, created: true)
       redirect_to @event
     else
       render :new, status: :unprocessable_entity
