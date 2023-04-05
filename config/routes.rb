@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :authors
   resources :faculties
   resources :students
+  resources :employees
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: "users#index"
 end
