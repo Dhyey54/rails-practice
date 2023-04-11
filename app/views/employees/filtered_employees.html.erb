@@ -1,0 +1,29 @@
+<div class="my-5">
+  <%= render "dropdown" %>
+</div>
+<h1 class="text-center m-4 h1">Employees</h1>
+  <table class="table w-75 table-bordered table-striped table-hover m-auto text-center">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>No of Order</th>
+      <th>Full Time Availablity</th>
+      <th>Salary</th>
+    </tr>
+    <% num = 1 %>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= link_to num, employee %></td>
+        <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.age %></td>
+        <td><%= employee.no_of_order %></td>
+        <td><%= employee.full_time_available %></td>
+        <td><%= employee.salary %></td>
+      </tr>
+      <% num += 1 %>
+    <% end %>
+  </table>
+</div>
