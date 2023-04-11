@@ -99,7 +99,12 @@ class EmployeesController < ApplicationController
       @employees = Employee.where("salary > ?", 45000)
       selected_option(8)
     when "9"
-      @employees = Employee.group(:id, :no_of_order).having("no_of_order > 5")
+      @employees = []
+      Employee.group(:no_of_order).having("no_of_order > 5").count.each do |em|
+        Employee.where(no_of_order: em[0]).each do |em|
+          @employees.append(em)
+        end
+      end
       selected_option(9)
     when "10"
       @employees = Employee.where(id: 10, age: 20).limit(20).unscope(:where).only(:limit)
