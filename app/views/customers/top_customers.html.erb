@@ -1,0 +1,18 @@
+<h1 class="text-center my-4">Customer</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Index</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+  </tr>
+  <% num=1 %>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= link_to num, customer %></td>
+      <td><%= "#{customer.first_name} #{customer.last_name}" %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.phone_number %></td>
+    <% num+=1 %>
+  <% end %>
+</table>

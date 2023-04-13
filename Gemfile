@@ -14,6 +14,9 @@ gem "sprockets-rails"
 
 gem "pg"
 
+# Use hirb when we want to see db query in table form in console
+gem 'hirb'
+
 gem 'validates_timeliness', '~> 7.0.0.beta1' 
 
 # Use the Puma web server [https://github.com/puma/puma]
