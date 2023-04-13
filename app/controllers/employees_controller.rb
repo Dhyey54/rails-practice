@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :employee_details, only: %i[edit update destroy]
+  before_action :employee_details, only: %i[edit update destroy increment decrement]
 
   def index
     @employees = Employee.find_in_batches(batch_size: 10).first
@@ -54,7 +54,6 @@ class EmployeesController < ApplicationController
   end
 
   def increment
-    @employee = Employee.find(params[:id])
     unless @employee.nil?
       @employee.increment!(:no_of_order)
       redirect_to employees_path
@@ -62,7 +61,6 @@ class EmployeesController < ApplicationController
   end
 
   def decrement
-    @employee = Employee.find(params[:id])
     unless @employee.nil?
       @employee.decrement!(:no_of_order)
       redirect_to employees_path
@@ -75,7 +73,7 @@ class EmployeesController < ApplicationController
     when ""
       flash[:alert] = "Please Select Option"
     when "1"
-      @employees = Employee.where("age > 20").where("age < 40")
+      @employees = Employee.where("age > 20 AND age < 40")
       selected_option(1)
     when "2"
       @employees = Employee.where(full_time_available: true)

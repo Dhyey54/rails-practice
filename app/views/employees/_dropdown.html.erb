@@ -1,7 +1,7 @@
 <div class="row">
   <div class="d-flex justify-content-center mb-4">
     <%= form_with url: filtered_employees_path, method: :get, class: "d-flex" do |form| %>
-      <%= form.select :selected_option, Employee::OPTIONS, {selected: params[:selected_option]} , {class: "form-select form-select-sm me-3"} %>
+      <%= form.select :selected_option, Employee::OPTIONS, {include_blank: "Select Filter", selected: params[:selected_option]} , {class: "form-select form-select-sm me-3"} %>
       <%= form.submit "Search", class: "btn btn-primary" %>
     <% end %>
   </div>

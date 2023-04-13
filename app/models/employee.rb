@@ -1,7 +1,7 @@
 class Employee < ApplicationRecord
   validates :first_name, :last_name, :email, :age, :salary, presence: true
 
-  OPTIONS = @options = [
+  OPTIONS = [
     ["Age Task", 1], 
     ["Availability Task", 2], 
     ["Order and Age Task", 3], 
