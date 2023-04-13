@@ -9,7 +9,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find_by(comment_id: params[:commentid], user_id: @current_user)
+    @like = Like.find_by(comment_id: params[:commentid], user_id: @current_user.id)
     @like.destroy
 
     redirect_to event_comments_path(params[:eventid])

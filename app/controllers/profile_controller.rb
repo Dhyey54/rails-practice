@@ -3,8 +3,8 @@ class ProfileController < ApplicationController
   before_action :user_profile
 
   def index
-    @comments = Comment.where(user_id: @current_user[:id])
-    @address = Address.find_by(user_id: @current_user[:id])
+    @comments = @current_user.comments
+    @address = Address.find_by(user_id: @current_user.id)
     @profile_events = Event.order(id: :desc).find(@enrolled_event)
   end
 
@@ -19,7 +19,7 @@ class ProfileController < ApplicationController
   end
 
   def destroy
-    Enrollment.where(event_id: params[:id], user_id: @current_user[:id], created: false).first.destroy
+    Enrollment.where(event_id: params[:id], user_id: @current_user.id, created: false).first.destroy
 
     redirect_to profile_index_path
   end
@@ -29,6 +29,6 @@ class ProfileController < ApplicationController
     params.require(:profile).permit(:firstname, :lastname, :phone)
   end
   def user_profile
-    @profile = Profile.find_by(user_id: @current_user[:id])
+    @profile = @current_user.profile
   end
 end

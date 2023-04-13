@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :current_comment, only: %i[edit update destroy]
 
   def user_comments
-    @comments = Comment.where(user_id: @current_user[:id])
+    @comments = @current_user.comments
   end
 
   def event_comments

@@ -15,7 +15,8 @@ class AddressesController < ApplicationController
   def address_params
     params.require(:address).permit(:address, :pincode, :city, :state)
   end
+
   def user_address
-    @address = Address.find_by(user_id: @current_user[:id])
+    @address = Address.find_by(user_id: @current_user.id)
   end
 end
