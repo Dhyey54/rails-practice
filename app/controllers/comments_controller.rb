@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(user_comment: comment_params[:user_comment], event_id: params[:event_id], user_id: @current_user[:id])
+    @comment = Comment.new(user_comment: comment_params[:user_comment], event_id: params[:event_id], user_id: @current_user.id)
     
     if @comment.save
       redirect_to event_comments_path(params[:event_id])
