@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      @current_user.enrollments.create(event_id: @event.id, created: true)
+      @current_user.enrollments.create(event_id: @event.id, owner: true)
       redirect_to @event
     else
       render :new, status: :unprocessable_entity
@@ -48,11 +48,11 @@ class EventsController < ApplicationController
 
   private
   def events
-    @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], created: true).pluck(:event_id)).order(id: :desc)
+    @events = Event.where(id: Enrollment.where(user_id: @current_user[:id], owner: true).pluck(:event_id)).order(id: :desc)
   end
 
   def user_event
-    @event = Event.find_by(id: Enrollment.where(user_id: @current_user[:id], event_id: params[:id], created: true).pluck(:event_id))
+    @event = Event.find_by(id: Enrollment.where(user_id: @current_user[:id], event_id: params[:id], owner: true).pluck(:event_id))
   end
 
   def categories

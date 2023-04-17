@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def enrolled_event
-      @enrolled_event = Enrollment.where(user_id: @current_user.id, created: false).pluck(:event_id)
+      @enrolled_event = Enrollment.where(user_id: @current_user.id, owner: false).pluck(:event_id)
     end
 
     def require_login

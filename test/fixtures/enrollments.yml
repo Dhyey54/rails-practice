@@ -3,9 +3,9 @@
 one:
   user: one
   event: one
-  created: false
+  owner: false
 
 two:
   user: two
   event: two
-  created: false
+  owners: false

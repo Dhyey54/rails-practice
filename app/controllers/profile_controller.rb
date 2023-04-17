@@ -19,7 +19,7 @@ class ProfileController < ApplicationController
   end
 
   def destroy
-    Enrollment.where(event_id: params[:id], user_id: @current_user.id, created: false).first.destroy
+    Enrollment.where(event_id: params[:id], user_id: @current_user.id, owner: false).first.destroy
 
     redirect_to profile_index_path
   end
