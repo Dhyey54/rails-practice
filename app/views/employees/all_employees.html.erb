@@ -14,10 +14,9 @@
     <th>Salary</th>
     <th>Action</th>
   </tr>
-  <% num = 1 %>
-  <% @employees.each do |employee| %>
+  <% @employees.each_with_index do |employee, inx| %>
     <tr>
-      <td><%= link_to num, employee %></td>
+      <td><%= link_to inx+1, employee %></td>
       <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
       <td><%= employee.email %></td>
       <td><%= employee.age %></td>
@@ -27,7 +26,6 @@
       <td><%= link_to 'Edit', edit_employee_path(employee), class: "text-decoration-none text-dark btn btn-warning me-2" %>
       <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
     </tr>
-    <% num += 1 %>
   <% end %>
 </table>
 

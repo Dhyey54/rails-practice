@@ -12,10 +12,9 @@
       <th>Full Time Availablity</th>
       <th>Salary</th>
     </tr>
-    <% num = 1 %>
-    <% @employees.each do |employee| %>
+    <% @employees.each_with_index do |employee, inx| %>
       <tr>
-        <td><%= link_to num, employee %></td>
+        <td><%= link_to inx+1, employee %></td>
         <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
         <td><%= employee.email %></td>
         <td><%= employee.age %></td>
@@ -23,7 +22,6 @@
         <td><%= employee.full_time_available %></td>
         <td><%= employee.salary %></td>
       </tr>
-      <% num += 1 %>
     <% end %>
   </table>
 </div>
