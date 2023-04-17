@@ -14,10 +14,9 @@
     <th>Customer Name</th>
     <th>Action</th>
   </tr>
-  <% num=1 %>
-  <% @orders.each do |order| %>
+  <% @orders.each_with_index do |order, inx| %>
     <tr>
-      <td><%= link_to num, order %></td>
+      <td><%= link_to inx+1, order %></td>
       <td><%= order.quantity %></td>
       <td><%= order.total_price %></td>
       <td>
@@ -32,7 +31,6 @@
       <td><%= link_to 'Edit', edit_order_path(order), class: "text-decoration-none text-dark btn btn-warning me-2" %>
       <%= link_to "Destroy", order_path(order), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
     </tr>
-    <% num+=1 %>
   <% end %>
 </table>
 

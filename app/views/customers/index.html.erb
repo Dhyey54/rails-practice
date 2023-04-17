@@ -8,17 +8,15 @@
     <th>Phone Number</th>
     <th>Action</th>
   </tr>
-  <% num=1 %>
-  <% @customers.each do |customer| %>
+  <% @customers.each_with_index do |customer,inx| %>
     <tr>
-      <td><%= link_to num, customer %></td>
+      <td><%= link_to inx+1, customer %></td>
       <td><%= "#{customer.first_name} #{customer.last_name}" %></td>
       <td><%= customer.email %></td>
       <td><%= customer.phone_number %></td>
       <td><%= link_to 'Edit', edit_customer_path(customer), class: "text-decoration-none text-dark btn btn-warning me-2" %>
       <%= link_to "Destroy", customer_path(customer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
     </tr>
-    <% num+=1 %>
   <% end %>
 </table>
 

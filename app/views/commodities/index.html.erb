@@ -12,10 +12,9 @@
       <th>Action</th>
     </tr>
 
-    <% num=1 %>
-    <% @commodities.each do |commodity| %>
+    <% @commodities.each_with_index do |commodity,inx| %>
       <tr>
-        <td><%= link_to num, commodity %></td>
+        <td><%= link_to inx+1, commodity %></td>
         <td><%= commodity.title %></td>
         <td><%= commodity.description %></td>
         <td><%= commodity.price %></td>
@@ -32,7 +31,6 @@
         <td><%= link_to 'Edit', edit_commodity_path(commodity), class: "text-decoration-none text-dark btn btn-warning me-2" %>
         <%= link_to "Destroy", commodity_path(commodity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
       </tr>
-      <% num+=1 %>
     <% end %>
     
   </table>
