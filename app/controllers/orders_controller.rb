@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def search
-    commodity_ids = Commodity.where("title LIKE ?", params[:search_product] + "%").pluck(:id)
+    commodity_ids = Commodity.where("title LIKE ?", "#{params[:search_product]}%").pluck(:id)
     @orders = Order.where(commodity_id: commodity_ids)
 
     render :index
