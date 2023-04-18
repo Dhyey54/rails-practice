@@ -12,7 +12,7 @@
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
   <tr>
     <th>Index</th>
-    <th>Product Name</th>
+    <th>Commodity Name</th>
     <th>Customer Name</th>
     <th>Status</th>
     <th>Quantity</th>
@@ -25,12 +25,15 @@
       <td><%= commodity_name(order.commodity_id).title %></td>
       <td><%= "#{order.customer.first_name} #{order.customer.last_name}" %></td>
       <td>
-      <% if order.status == "Booked" %>
-        <i class='bi bi-circle-fill' style="color: rgb(102, 255, 102); padding: 5px;"></i>
-      <% else%>
-        <i class='bi bi-circle-fill' style="color: rgb(255, 0, 0); padding: 5px;"></i>
-      <% end %>
-      <%= order.status %></td>
+        <div class="d-inline badge text-dark">
+          <% if order.status == "Booked" %>
+            <i class='bi bi-circle-fill success'></i>
+          <% else %>
+            <i class='bi bi-circle-fill danger'></i>
+          <% end %>
+          <%= order.status %>
+        </div>
+      </td>
       <td><%= order.quantity %></td>
       <td><%= order.total_price %></td>
       <td><%= link_to 'Edit', edit_order_path(order), class: "text-decoration-none text-dark btn btn-warning me-2" %>
