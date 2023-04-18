@@ -1,4 +1,8 @@
-<h1 class="text-center my-4">Customer</h1>
+<h1 class="text-center my-4">Customers</h1>
+
+<div class="w-50 text-end mx-auto p-2">
+  <%= link_to "New Customer", new_customer_path, class: "text-decoration-none text-light btn btn-info" %>
+</div>
 
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
   <tr>
@@ -20,11 +24,6 @@
   <% end %>
 </table>
 
-<div class="w-50 d-flex justify-content-between mx-auto p-2">
-  <%= link_to "Orders", orders_path, class: "text-decoration-none text-light btn btn-info" %>
-  <%= link_to "New Customer", new_customer_path, class: "text-decoration-none text-light btn btn-info" %>
-  <%= link_to "Products", products_path, class: "text-decoration-none text-light btn btn-info" %>
-</div>
 
 <br><br><br>
 
@@ -54,5 +53,3 @@
     </td>
   </tr>
 </table>
-
-<br><br>

@@ -9,17 +9,17 @@ class CustomersController < ApplicationController
 
   def top_customers
     case params[:task]
-    when ""
-      flash[:alert] = "No Access"
+    when ''
+      flash[:alert] = 'No Access'
       redirect_to customers_path
-    when "1"
-      @customers = Customer.joins(:orders).group(:id).order("SUM(quantity) DESC").limit(3)
-    when "2"
-      @customers = Customer.joins(orders: :commodity).group(:id).order("SUM(price) DESC").limit(3)
-    when "3"
-      @customers = Customer.joins(:orders).where("orders.status = '0'").order("COUNT(customers.id) DESC").group(:id).limit(5)
-    when "4"
-      @customers = Customer.joins(:orders).where("orders.status = '1'").order("COUNT(customers.id) DESC").group(:id).limit(5)
+    when '1'
+      @customers = Customer.joins(:orders).group(:id).order('SUM(quantity) DESC').limit(3)
+    when '2'
+      @customers = Customer.joins(orders: :commodity).group(:id).order('SUM(price) DESC').limit(3)
+    when '3'
+      @customers = Customer.joins(:orders).where("orders.status = '0'").order('COUNT(customers.id) DESC').group(:id).limit(5)
+    when '4'
+      @customers = Customer.joins(:orders).where("orders.status = '1'").order('COUNT(customers.id) DESC').group(:id).limit(5)
     end
   end
 
@@ -54,6 +54,7 @@ class CustomersController < ApplicationController
   end
 
   private
+
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :email, :phone_number)
   end

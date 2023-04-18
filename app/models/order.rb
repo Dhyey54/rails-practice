@@ -18,6 +18,6 @@ class Order < ApplicationRecord
 
   private
   def total_price_order
-    self.total_price = self.quantity * self.commodity.price
+    self.total_price = quantity * commodity.price
   end
 end

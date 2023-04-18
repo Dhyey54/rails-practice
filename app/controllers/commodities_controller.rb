@@ -43,6 +43,7 @@ class CommoditiesController < ApplicationController
   end
 
   private
+
   def commodity_params
     params.require(:commodity).permit(:title, :description, :price, :capacity, :is_active, :status)
   end

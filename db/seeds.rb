@@ -16,9 +16,9 @@ end
 end
 
 10.times do |p|
-  Commodity.create(title: "Commodity", description: "It is the description of #{p} commodity", price: rand(0..10000), is_active: rand(0..1), status: rand(0..2))
+  Commodity.create(title: "Commodity #{p}", description: "It is the description of #{p} commodity", price: rand(500..10_000).ceil(-3),capacity: rand(1..50), is_active: rand(0..1), status: rand(0..2))
 end
 
-30.times do |o|
+30.times do
   Order.create(quantity: rand(1..30), status: rand(0..1), commodity_id: Commodity.ids.sample, customer_id: Customer.ids.sample)
 end
