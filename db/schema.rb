@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_07_053142) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_084003) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +75,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_053142) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "commodities", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "price"
+    t.integer "capacity"
+    t.boolean "is_active"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.bigint "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -129,6 +150,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_053142) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "total_price"
+    t.integer "status"
+    t.bigint "commodity_id", null: false
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commodity_id"], name: "index_orders_on_commodity_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "code"
     t.string "name"
@@ -176,5 +209,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_053142) do
   add_foreign_key "events", "categories"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "orders", "commodities"
+  add_foreign_key "orders", "customers"
   add_foreign_key "profiles", "users"
 end

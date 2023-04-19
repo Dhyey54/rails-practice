@@ -1,0 +1,29 @@
+<h1 class="text-center m-4 h1">Commodity</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Capacity</th>
+    <th>Active Status</th>
+    <th>Avalability Status</th>
+  </tr>
+  <tr>
+    <td><%= @commodity.title %></td>
+    <td><%= @commodity.description %></td>
+    <td><%= @commodity.price %></td>
+    <td><%= @commodity.capacity %></td>
+    <td><%= @commodity.is_active %></td>
+    <td>
+      <div class="d-inline badge text-dark">
+        <% if @commodity.status == "In Stock" %>
+          <i class='bi bi-circle-fill success'></i>
+        <% elsif @commodity.status == "Out of Stock" %>
+          <i class='bi bi-circle-fill danger'></i>
+        <% else %>
+          <i class='bi bi-circle-fill caution'></i>
+        <% end %><%= @commodity.status %>
+      </div>
+    </td>
+  </tr>
+</table>
