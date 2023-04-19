@@ -22,3 +22,7 @@ end
 30.times do
   Order.create(quantity: rand(1..30), status: rand(0..1), commodity_id: Commodity.ids.sample, customer_id: Customer.ids.sample)
 end
+
+30.times do |em|
+  Employee.find_or_create_by(first_name: "Employee", last_name: "#{em}", email: "employee#{em}@gmail.com", age: rand(18..30), no_of_order: rand(0..20), full_time_available: rand(0..1), salary: rand(20..100)*1000)
+end
