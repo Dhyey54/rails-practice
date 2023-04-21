@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :commodity_details
 
   def index
-    @orders = Order.order(:id)
+    @orders = Order.includes(:commodity, :customer).order(:id)
   end
 
   def show
@@ -12,8 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def search
-    commodity_ids = Commodity.where("title LIKE ?", "#{params[:search_product]}%").pluck(:id)
-    @orders = Order.where(commodity_id: commodity_ids)
+    commodity_ids = Commodity.unscoped.where("title LIKE ?", "%#{params[:search_commodity]}%").pluck(:id)
+    @orders = Order.includes(:commodity).where(commodity_id: commodity_ids)
 
     render :index
   end
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-      redirect_to @order
+      redirect_to commodities_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      redirect_to @order
+      redirect_to orders_path
     else
       render :edit, status: :unprocessable_entity
     end

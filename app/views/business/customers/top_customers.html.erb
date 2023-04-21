@@ -5,12 +5,14 @@
     <th>Name</th>
     <th>Email</th>
     <th>Phone Number</th>
+    <th>Action</th>
   </tr>
   <% @customers.each_with_index do |customer, inx| %>
     <tr>
-      <td><%= link_to inx+1, customer %></td>
+      <td><%= inx+1 %></td>
       <td><%= "#{customer.first_name} #{customer.last_name}" %></td>
       <td><%= customer.email %></td>
       <td><%= customer.phone_number %></td>
+      <td><%= link_to 'Show', preview_business_customer_path(customer), class: "text-decoration-none text-light btn btn-info me-2" %></td>
   <% end %>
 </table>

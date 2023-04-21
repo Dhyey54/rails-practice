@@ -10,7 +10,9 @@ class CommoditiesController < ApplicationController
     render :index
   end
 
-  def show; end
+  def show
+    @orders = @commodity.orders.includes(:customer)
+  end
 
   def new
     @commodity = Commodity.new

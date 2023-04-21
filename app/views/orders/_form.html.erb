@@ -1,5 +1,5 @@
 <div class="container w-50">
-  <%= form_with model: order do |form| %>
+  <%= form_with model: order, url: url do |form| %>
     <%= render "error" %>
     <div class="row py-3">
       <div class="col-6 col-sm-3">
@@ -10,22 +10,14 @@
       </div>
     </div>
 
-    <div class="row py-3">
-      <div class="col-6 col-sm-3">
-        <%= form.label :commodity, class: "form-label" %>
-      </div>
-      <div class="col-6 col-sm-3">
-        <% puts @commodities %>
-        <%= form.select :commodity_id, @commodities.map{ |name| [name.title, name.id]}, { include_blank: "Select Commodity" }, { class: "form-select form-select-sm me-3" } %><br>
-      </div>
-    </div>
+    <%= form.hidden_field :commodity_id, value: params[:commodity_id] %>
 
     <div class="row py-3">
       <div class="col-6 col-sm-3">
         <%= form.label :customer, class: "form-label" %>
       </div>
         <div class="col-6 col-sm-3">
-        <%= form.select :customer_id, @customers.map{ |name| ["#{name.first_name} #{name.last_name}", name.id]}, { include_blank: "Select Customer" }, { class: "form-select form-select-sm me-3" } %><br>
+        <%= form.select :customer_id, @customers.map{ |name| ["#{name.first_name} #{name.last_name}", name.id]}, { include_blank: "Select Customer" }, { class: "form-select form-select-sm me-3" } %>
       </div>
     </div>
 
