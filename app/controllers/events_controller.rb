@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @category = @event.category
-    @comments = Event.find(params[:id]).comments
+    @comments = @event.comments
   end
 
   def new
@@ -48,11 +48,11 @@ class EventsController < ApplicationController
 
   private
   def events
-    @events = Event.where(id: Enrollment.where(user_id: @current_user.id, owner: true).pluck(:event_id)).order(id: :desc)
+    @events = Event.order(id: :desc).find(@current_user.enrollments.where(owner: true).pluck(:event_id))
   end
 
   def user_event
-    @event = Event.find_by(id: Enrollment.where(user_id: @current_user.id, event_id: params[:id], owner: true).pluck(:event_id))
+    @event = Event.find_by(id: @current_user.enrollments.where(owner: true, event_id: params[:id]).pluck(:event_id))
   end
 
   def categories

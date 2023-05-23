@@ -17,8 +17,8 @@
       <% else %>
         <td></td>
       <% end %>
-      <% if comment.user.id != @current_user.id %>
-        <% if comment.likes.pluck("user_id").include?(comment.user_id) || comment.likes.pluck("user_id").include?(@current_user.id) %>
+      <% if comment.user != @current_user %>
+        <% if liked_comment(comment) %>
           <td><%= link_to 'Liked', dislike_path(comment.id, comment.event_id), class: "text-decoration-none text-dark btn btn-warning me-2" %></td>
         <% else %>
           <td><%= link_to 'Like', like_path(comment.id, comment.event_id), class: "text-decoration-none text-dark btn btn-warning me-2" %></td>

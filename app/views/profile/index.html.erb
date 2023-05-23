@@ -1,33 +1,42 @@
-<h1 class="text-center m-4 h1">Profile</h1>
-<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone Number</th>
-  </tr>
-  <tr>
-    <td><%= @profile.firstname %></td>
-    <td><%= @profile.lastname %></td>
-    <td><%= @profile.phone %></td>
-  </tr>
-</table>
-<div class="text-center p-2">
-  <%= link_to 'Edit Profile', edit_profile_path(@profile), class: "text-decoration-none text-dark btn btn-warning my-3" %>
-</div>
+<% unless @profile.nil? %>
+  <h1 class="text-center m-4 h1">Profile</h1>
+  <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+    </tr>
+    <tr>
+      <td><%= @profile.firstname %></td>
+      <td><%= @profile.lastname %></td>
+      <td><%= @profile.phone %></td>
+    </tr>
+  </table>
+  <div class="text-center p-2">
+    <%= link_to 'Edit Profile', edit_profile_path(@profile), class: "text-decoration-none text-dark btn btn-warning my-3" %>
+  </div>
+<% else %>
+  <h3 class="text-center p-3">Please Create Profile from Console</h3>
+<% end %>
 
-<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
-  <tr>
-    <th>Address</th>
-    <td><%= @address.address %>,
-        <%= @address.pincode %><br>
-        <%= @address.city %>,<br>
-        <%= @address.state %></td>
-  </tr>
-</table>
-<div class="text-center p-2">
-  <%= link_to 'Edit Address', edit_address_path(@address), class: "text-decoration-none text-dark btn btn-warning my-3" %>
-</div>
-<br><br><hr>
+<% unless @address.nil? %>
+  <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+    <tr>
+      <th>Address</th>
+      <td><%= @address.address %>,
+          <%= @address.pincode %><br>
+          <%= @address.city %>,<br>
+          <%= @address.state %></td>
+    </tr>
+  </table>
+  <div class="text-center p-2">
+    <%= link_to 'Edit Address', edit_address_path(@address), class: "text-decoration-none text-dark btn btn-warning my-3" %>
+  </div>
+<% else %>
+  <h3 class="text-center p-3">Please Create Profile from Console</h3>
+<% end %>
+
+<hr>
 <h1 class="text-center my-4">Enrolled Events</h1>
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
   <tr>
