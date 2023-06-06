@@ -10,7 +10,6 @@ module Business
 
     def search
       @customers = Customer.where("first_name LIKE ?", "%#{params[:search_customer]}%")
-      puts @customers
       render :index
     end
 

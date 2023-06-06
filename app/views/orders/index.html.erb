@@ -19,7 +19,7 @@
     <tr>
       <td><%= inx+1 %></td>
       <td><%= order.commodity.title %></td>
-      <td><%= "#{order.customer.first_name} #{order.customer.last_name}" %></td>
+      <td><%= customer_fullname(order.customer) %></td>
       <td>
         <div class="d-inline badge text-dark">
           <% if order.status == "Booked" %>

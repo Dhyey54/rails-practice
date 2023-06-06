@@ -8,15 +8,8 @@ Rails.application.routes.draw do
 
   get 'commodities/home', to: "commodities#home", as: "commodity_home"
 
-  
   get 'orders/filtered_orders', to: "orders#filtered_orders", as: "filtered_orders"
   get 'order/search', to: "orders#search"
-  
-  get 'employee/email/search', to: "employees#search"
-  get 'employee/increment/:id', to: "employees#increment", as: "order_increment"
-  get 'employee/decrement/:id', to: "employees#decrement", as: "order_decrement"
-  get 'employee/all_employees', to: "employees#all_employees", as: "all_employees"
-  get 'employee/filtered_employees', to: "employees#filtered_employees", as: "filtered_employees"
 
   resources :users
   resources :cars
@@ -25,10 +18,11 @@ Rails.application.routes.draw do
   resources :authors
   resources :faculties
   resources :students
-  
+
   resources :commodities do
     resources :orders, except: %i[index show destroy]
   end
+
   namespace :business do
     resources :customers, except: %i[show destroy] do
       member do
@@ -43,7 +37,17 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[index show destroy]
-  resources :employees
+  resources :employees do
+    member do
+      get 'increment', to: "employees#increment", as: "order_increment"
+      get 'decrement', to: "employees#decrement", as: "order_decrement"
+    end
+    collection do
+      get 'email/search', to: "employees#search"
+      get 'all_employees', to: "employees#all_employees", as: "all"
+      get 'filtered_employees', to: "employees#filtered_employees", as: "filtered"
+    end
+  end
 
   namespace :api do
     namespace :v1 do
