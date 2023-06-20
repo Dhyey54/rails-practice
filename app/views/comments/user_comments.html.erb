@@ -1,0 +1,13 @@
+<h1 class="text-center my-4">User comments</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Event Name</th>
+    <th>Comments</th>
+  </tr>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.event.name %></td>
+      <td><%= comment.user_comment %></td>
+    </tr>
+  <% end %>
+</table>

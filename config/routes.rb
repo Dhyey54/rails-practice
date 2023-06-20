@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
+
   root "commodities#index"
 
   get '/home', to: "home#index"
 
   get '/search', to: "cars#search"
+
+  get 'likes/create/:commentid/:eventid', to: "likes#create", as: "like"
+  get 'likes/destroy/:commentid/:eventid', to: "likes#destroy", as: "dislike"
+  get 'enrollments', to: "enrollments#index"
+  get 'comment/event_comments/:eventid', to: "comments#event_comments", as: "event_comments"
+  get "/comments/create/:eventid", to: "comments#create", as: "create_comments"
+  get "/comments/new/:eventid", to: "comments#new", as: "new_comment"
+  get 'comment/user_comments', to: "comments#user_comments", as: "user_comments"
+  get 'enrollments/create/:eventid', to: "enrollments#create", as: "create_enrollment"
+  get '/home', to: "home#index"
+  get 'cars/search', to: "cars#search"
+  get 'events/search', to: "events#search"
+
   get '/download_pdf', to: "cars#download_pdf"
 
   get 'commodities/home', to: "commodities#home", as: "commodity_home"
 
   get 'orders/filtered_orders', to: "orders#filtered_orders", as: "filtered_orders"
   get 'order/search', to: "orders#search"
-
   resources :users
   resources :cars
   resources :products
@@ -58,5 +71,13 @@ Rails.application.routes.draw do
       get 'all_data', action: :all_data, controller: 'tests'
     end
   end
+  resources :events
+  resources :profile
+  resources :comments
+  resources :addresses, only: %i[edit update]
+  resources :commodities
+  resources :customers
+  resources :orders
+  resources :employees
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end

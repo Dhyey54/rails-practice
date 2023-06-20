@@ -1,0 +1,32 @@
+<h1 class="text-center m-4 h1">Event</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Category</th>
+  </tr>
+  <tr>
+    <td><%= @event.name %></td>
+    <td><%= @event.description %></td>
+    <td><%= @event.event_date %></td>
+    <td><%= @category.category_name %></td>
+  </tr>
+</table>
+
+<br><br><hr>
+<h1 class="text-center my-4">User comments</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>User</th>
+    <th>Event Name</th>
+    <th>Comments</th>
+  </tr>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.user.username %></td>
+      <td><%= comment.event.name %></td>
+      <td><%= comment.user_comment %></td>
+    </tr>
+  <% end %>
+</table>

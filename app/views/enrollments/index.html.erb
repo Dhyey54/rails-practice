@@ -1,0 +1,21 @@
+<h1 class="text-center my-4">Enrollable Events</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Enrollment</th>
+  </tr>
+  <% @enrollable_events.each do |event| %>
+    <tr>
+      <% if @enrolled_event.include?(event.id) %>
+        <% next %>
+      <% else %>
+        <td><%= event.name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.event_date %></td>
+        <td><%= link_to "Enroll", create_enrollment_path(event.id), class: "text-decoration-none text-dark btn btn-info" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

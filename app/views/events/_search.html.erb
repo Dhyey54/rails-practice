@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="d-flex justify-content-center mb-4">
+      <%= form_with url: events_search_path, method: :get do |form| %>
+        <div class="d-flex my-2">
+          <%= form.select :category_id, @categories.map { |c| [c.category_name, c.id]}, {}, {class: "form-select me-3"}%>
+          <%= form.submit "Search" %>
+        </div>
+      <% end %>
+  </div>
+</div>

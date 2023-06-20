@@ -1,0 +1,36 @@
+<h1 class="text-center m-4 h1">Edit Profile Details</h1>
+
+<div class="container w-50">
+  <%= form_with model: @profile do |form| %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :firstname %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :firstname %>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :lastname %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :lastname %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :phone %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :phone %><br>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
