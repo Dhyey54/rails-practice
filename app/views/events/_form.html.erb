@@ -1,0 +1,44 @@
+<div class="container w-50">
+  <%= form_with model: event do |form| %>
+    <%= render "error" %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :name %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :name %>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :description %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :description %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :event_date %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.date_field :event_date %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :category %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.select :category_id,categories.map { |c| [c.category_name, c.id]}, {}, {class: "form-control"}%>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
