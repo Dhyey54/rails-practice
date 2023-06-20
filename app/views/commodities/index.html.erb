@@ -1,0 +1,51 @@
+<h1 class="text-center my-4">Commodities</h1>
+<div class="table-responsive">
+  <table class="table w-75 table-bordered table-striped table-hover m-auto text-center">
+  <div class="w-75 mx-auto text-end my-2 d-flex justify-content-between">
+    <% if controller.action_name == "index" %>
+      <%= link_to "Active Commodity", commodity_home_path, class: "text-decoration-none text-light btn btn-info" %>
+    <% else %>
+      <%= link_to "All Commodity", commodities_path, class: "text-decoration-none text-light btn btn-info" %>
+    <% end %>
+    <%= link_to "New Commodity", new_commodity_path, class: "text-decoration-none text-light btn btn-info" %>
+  </div>
+    <tr>
+      <th>Index</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Capacity</th>
+      <th>Active Status</th>
+      <th>Avalability Status</th>
+      <th>Total Order Count</th>
+      <th>Action</th>
+    </tr>
+
+    <% @commodities.each_with_index do |commodity,inx| %>
+      <tr>
+        <td><%= link_to inx+1, commodity %></td>
+        <td><%= commodity.title %></td>
+        <td><%= commodity.description %></td>
+        <td><%= commodity.price %></td>
+        <td><%= commodity.capacity %></td>
+        <td><%= commodity.is_active %></td>
+        <td>
+          <div class="d-inline badge text-dark">
+            <% if commodity.status == "In Stock" %>
+              <i class='bi bi-circle-fill success'></i>
+            <% elsif commodity.status == "Out of Stock" %>
+              <i class='bi bi-circle-fill danger'></i>
+            <% else %>
+              <i class='bi bi-circle-fill caution'></i>
+            <% end %><%= commodity.status %>
+          </div>
+        </td>
+        <td><%= commodity.orders.count %></td>
+        <td><%= link_to 'Edit', edit_commodity_path(commodity), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+        <%= link_to "Destroy", commodity_path(commodity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
+      </tr>
+    <% end %>
+    
+  </table>
+</div>
+<br><br>

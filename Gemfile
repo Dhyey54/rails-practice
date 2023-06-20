@@ -14,7 +14,9 @@ gem "sprockets-rails"
 
 gem "pg"
 
-gem 'pry'
+# Use hirb when we want to see db query in table form in console
+gem 'hirb'
+
 
 gem 'validates_timeliness', '~> 7.0.0.beta1' 
 

@@ -111,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_084003) do
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.boolean "owner"
+    t.boolean "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_enrollments_on_event_id"
