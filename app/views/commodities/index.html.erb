@@ -18,12 +18,13 @@
       <th>Active Status</th>
       <th>Avalability Status</th>
       <th>Total Order Count</th>
-      <th>Action</th>
+      <th>Commodity Action</th>
+      <th>Order Action</th>
     </tr>
 
     <% @commodities.each_with_index do |commodity,inx| %>
       <tr>
-        <td><%= link_to inx+1, commodity %></td>
+        <td><%= inx+1 %></td>
         <td><%= commodity.title %></td>
         <td><%= commodity.description %></td>
         <td><%= commodity.price %></td>
@@ -41,8 +42,10 @@
           </div>
         </td>
         <td><%= commodity.orders.count %></td>
-        <td><%= link_to 'Edit', edit_commodity_path(commodity), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+        <td><%= link_to 'Show', commodity, class: "text-decoration-none text-dark btn btn-info me-2" %>
+        <%= link_to 'Edit', edit_commodity_path(commodity), class: "text-decoration-none text-dark btn btn-warning me-2" %>
         <%= link_to "Destroy", commodity_path(commodity), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
+        <td><%= link_to 'Order', new_commodity_order_path(commodity), class: "text-decoration-none text-dark btn btn-info me-2" %></td>
       </tr>
     <% end %>
     

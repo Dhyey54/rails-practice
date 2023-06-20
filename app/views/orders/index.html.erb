@@ -5,10 +5,6 @@
 </div>
 <h1 class="text-center">Orders</h1>
 
-<div class="w-50 text-end mx-auto p-2">
-  <%= link_to "New Order", new_order_path, class: "text-decoration-none text-light btn btn-info" %>
-</div>
-
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
   <tr>
     <th>Index</th>
@@ -21,9 +17,9 @@
   </tr>
   <% @orders.each_with_index do |order, inx| %>
     <tr>
-      <td><%= link_to inx+1, order %></td>
-      <td><%= commodity_name(order.commodity_id).title %></td>
-      <td><%= "#{order.customer.first_name} #{order.customer.last_name}" %></td>
+      <td><%= inx+1 %></td>
+      <td><%= order.commodity.title %></td>
+      <td><%= customer_fullname(order.customer) %></td>
       <td>
         <div class="d-inline badge text-dark">
           <% if order.status == "Booked" %>
@@ -36,7 +32,8 @@
       </td>
       <td><%= order.quantity %></td>
       <td><%= order.total_price %></td>
-      <td><%= link_to 'Edit', edit_order_path(order), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+      <td><%= link_to 'Show', order_path(order), class: "text-decoration-none text-light btn btn-info me-2" %>
+      <%= link_to 'Edit', edit_commodity_order_path(id: order.id, commodity_id: order.commodity_id), class: "text-decoration-none text-dark btn btn-warning me-2" %>
       <%= link_to "Destroy", order_path(order), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
     </tr>
   <% end %>
